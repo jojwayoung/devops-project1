@@ -82,35 +82,3 @@ module "rds_db_instance" {
   rds_mysql_sg_id = module.security_group.rds_mysql_sg_id
   subnet_groups = tolist(module.networking.dev_proj1_public_subnets)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
