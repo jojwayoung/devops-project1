@@ -33,13 +33,25 @@ pipeline{
             }
             */
         }
-
+        /*
         stage("Terraform Init") {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                     dir("infra") {
                         sh 'echo "========= Terraform Init ========="'
                         sh 'terrafrom init'
+                    }
+                }
+            }
+        }
+        */
+        stage('Terraform Init') {
+            steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]){
+                    sh 'whoami; ls -al'
+                    dir('infra') {
+                        sh 'echo "=================Terraform Init=================="'
+                        sh 'terraform init'
                     }
                 }
             }
