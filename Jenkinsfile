@@ -36,7 +36,7 @@ pipeline{
 
         stage("Terraform Init") {
             steps {
-                withCredentials([[$class: 'AmazonWebServiceCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                     dir("infra") {
                         sh 'echo "========= Terraform Init ========="'
                         sh 'terrafrom init'
@@ -79,7 +79,7 @@ pipeline{
             steps {
                 script {
                     if (params.TERRAFORM_DESTROY) {
-                        withCredentials([[$class: 'AmazonWebServiceCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
+                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                             dir("infra") {
                                 sh 'ehco "========= Terraform Destroy ========="'
                                 sh 'terraform destroy'
