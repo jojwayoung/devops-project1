@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Clone Repo") {
             steps {
-                echo "======== Clone Repository ========"
+                echo "======== Clone Repository (V.1) ========"
                 // Clean workspace before cloning
                 deleteDir()
 
@@ -46,11 +46,12 @@ pipeline{
         }
         */
         stage('Terraform Init') {
+	    sh 'terraform --version"'
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]){
                     sh 'whoami; ls -al'
                     dir('infra') {
-                        sh 'echo "=================Terraform Init=================="'
+                        sh 'echo "=================Terraform Init (V.1) =================="'
                         sh 'terraform init'
                     }
                 }
