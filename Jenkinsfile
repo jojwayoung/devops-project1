@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Clone Repo") {
             steps {
-                echo "======== Clone Repository (V.1) ========"
+                echo "================== Clone Repository =================="
                 // Clean workspace before cloning
                 deleteDir()
 
@@ -19,38 +19,13 @@ pipeline{
 
                 sh "ls -al"
             }
-            /* 
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
-            */
         }
-        /*
-        stage("Terraform Init") {
-            steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
-                    dir("infra") {
-                        sh 'echo "========= Terraform Init ========="'
-                        sh 'terrafrom init'
-                    }
-                }
-            }
-        }
-        */
+
         stage('Terraform Init') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]){
-                    sh 'whoami; ls -al'
                     dir('infra') {
-                        sh 'echo "=================Terraform Init (V.1) =================="'
+                        sh 'echo "================== TERRAFORM INIT =================="'
                         sh 'terraform init'
                     }
                 }
@@ -61,9 +36,9 @@ pipeline{
             steps {
                 script {
                     if(params.TERRAFORM_PLAN) {
-                        withCredentials() {
+                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]){
                             dir("infra") {
-                                sh 'ehco "========= Terraform Plan ========="'
+                                sh 'ehco "================== TERRAFORM PLAN =================="'
                                 sh 'terraform plan'
                             }
                         }
@@ -78,7 +53,7 @@ pipeline{
                     if (params.TERRAFORM_APPLY) {
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                             dir("infra") {
-                                sh 'ehco "========= Terraform Apply ========="'
+                                sh 'ehco "================== TERRAFORM APPLY =================="'
                                 sh 'terraform apply'
                             }
                         }
@@ -93,7 +68,7 @@ pipeline{
                     if (params.TERRAFORM_DESTROY) {
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                             dir("infra") {
-                                sh 'ehco "========= Terraform Destroy ========="'
+                                sh 'ehco "================== TERRAFORM DESTROY =================="'
                                 sh 'terraform destroy'
                             }
                         }
