@@ -55,7 +55,7 @@ pipeline{
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                             dir("infra") {
                                 sh 'echo "================== TERRAFORM APPLY =================="'
-                                sh 'terraform apply'
+                                sh 'terraform apply -auto-approve'
                             }
                         }
                     }
@@ -70,7 +70,7 @@ pipeline{
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                             dir("infra") {
                                 sh 'echo "================== TERRAFORM DESTROY =================="'
-                                sh 'terraform destroy'
+                                sh 'terraform destroy -auto-approve'
                             }
                         }
                     }
