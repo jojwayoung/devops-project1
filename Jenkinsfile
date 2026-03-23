@@ -38,7 +38,7 @@ pipeline{
                     if(params.TERRAFORM_PLAN) {
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]){
                             dir("infra") {
-                                sh 'ehco "================== TERRAFORM PLAN =================="'
+                                sh 'echo "================== TERRAFORM PLAN =================="'
                                 sh 'terraform plan'
                             }
                         }
@@ -53,7 +53,7 @@ pipeline{
                     if (params.TERRAFORM_APPLY) {
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                             dir("infra") {
-                                sh 'ehco "================== TERRAFORM APPLY =================="'
+                                sh 'echo "================== TERRAFORM APPLY =================="'
                                 sh 'terraform apply'
                             }
                         }
@@ -68,7 +68,7 @@ pipeline{
                     if (params.TERRAFORM_DESTROY) {
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]) {
                             dir("infra") {
-                                sh 'ehco "================== TERRAFORM DESTROY =================="'
+                                sh 'echo "================== TERRAFORM DESTROY =================="'
                                 sh 'terraform destroy'
                             }
                         }
