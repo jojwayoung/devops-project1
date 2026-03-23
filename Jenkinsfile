@@ -46,7 +46,7 @@ pipeline{
         }
         */
         stage('Terraform Init') {
-	    sh 'terraform --version"'
+            sh 'terraform --version'
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]){
                     sh 'whoami; ls -al'
