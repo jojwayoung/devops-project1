@@ -24,8 +24,9 @@ pipeline{
         stage('Terraform Init') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credential-jwayoung']]){
-                    dir('infra') {
+                    dir("infra") {
                         sh 'echo "================== TERRAFORM INIT =================="'
+                        sh 'pwd; ls -al'
                         sh 'terraform init'
                     }
                 }
