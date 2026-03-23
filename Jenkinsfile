@@ -15,7 +15,7 @@ pipeline{
                 deleteDir()
 
                 // Clone git repository
-                git branch: "master", url: "https://github.com/jojwayoung/devops-project1-terraform-jenkins.git"
+                git branch: "master", url: "https://github.com/jojwayoung/devops-project1.git"
 
                 sh "ls -al"
             }
