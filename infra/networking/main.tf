@@ -34,7 +34,7 @@ resource "aws_subnet" "dev_proj1_public_subnets" {
   availability_zone = element(var.availability_zone, count.index)
 
   tags = {
-    Name = "dev-proj1-public-subnet-${count.index+1}}"
+    Name = "dev-proj1-public-subnet-${count.index+1}"
   }
 }
 
@@ -43,7 +43,7 @@ resource "aws_subnet" "dev_proj1_private_subnets" {
   vpc_id = aws_vpc.dev_proj1_vpc_us_east_1.id
   count = length(var.cidr_private_subnet)
   cidr_block = element(var.cidr_private_subnet, count.index)
-  availability_zone = element(var.cidr_private_subnet, count.index)
+  availability_zone = element(var.availability_zone, count.index)
   tags = {
     Name = "dev-proj1-private-subnet-${count.index+1}"
   }
